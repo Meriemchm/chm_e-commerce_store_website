@@ -1,34 +1,14 @@
-"use client";
+"use client"
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import SplitText from "gsap/SplitText";
 import { Billboard as BillboardType } from "@/types";
-
-gsap.registerPlugin(SplitText);
+import { useGsapTextSplit } from "@/hooks/gsap-animations";
 
 interface BillboardProps {
   data: BillboardType;
 }
 
 export const Billboard: React.FC<BillboardProps> = ({ data }) => {
-  const textRef = useRef<HTMLParagraphElement>(null);
-
-  useEffect(() => {
-    if (textRef.current) {
-      // Split to caracter
-      const split = new SplitText(textRef.current, { type: "chars" });
-
-      // Animation GSAP 
-      gsap.from(split.chars, {
-        duration: 1,
-        y: 100,
-        autoAlpha: 0,
-        stagger: 0.05,
-        ease: "power3.out",
-      });
-    }
-  }, []);
+  const textRef = useGsapTextSplit();
 
   return (
     <div className="relative bg-cover bg-center">
