@@ -9,10 +9,13 @@ interface ProductPageProps {
 }
 
 const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
-  const product = await getProduct(params.productId);
+  const products = await getProduct(params.productId);
+  const product = Array.isArray(products) ? products[0] : products;
+  
   const suggestedProducts = await getProducts({
     categoryId: product?.category?.id,
-  }); // Fetch or compute suggested products based on productId
+  });
+
   return (
     <div className="bg-white rounded-lg shadow p-6">
       <Container>
