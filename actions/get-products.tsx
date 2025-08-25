@@ -25,6 +25,5 @@ export const getProducts = async (query: Query): Promise<Product[]> => {
   if (!res.ok) {
     throw new Error('Failed to fetch products');
   }
-  console.log(res)
   return res.json();
 };  
