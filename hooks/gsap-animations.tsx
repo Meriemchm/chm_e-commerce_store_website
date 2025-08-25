@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitText from "gsap/SplitText";
+import { usePathname } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
@@ -34,18 +35,30 @@ export function useGsapTextSplit() {
 
 export function useGsapFadeUp() {
   const ref = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
-    gsap.from(ref.current, {
-      y: 100,
-      opacity: 0,
-      duration: 1,
-      scrollTrigger: {
-        trigger: ref.current,
-        start: "top 80%",
-      },
-    });
-  }, []);
+    if (!ref.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.from(ref.current, {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ref.current,
+          start: "top 80%",
+        },
+      });
+    }, ref);
+
+    // refresh
+    ScrollTrigger.refresh();
+
+    // cleanup for 
+    return () => ctx.revert();
+  }, [pathname]);
 
   return ref;
 }
