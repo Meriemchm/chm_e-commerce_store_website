@@ -16,9 +16,12 @@ export const ProductList: React.FC<ProductListProps> = ({ title, items }) => {
 
   return (
     <div className="space-y-4">
-      <div ref={ref}>
-        <p className="font-bold text-center text-3xl py-10">{title}</p>
-      </div>
+      {title !== "" && (
+        <div ref={ref}>
+          <p className="font-bold text-center text-3xl py-10">{title}</p>
+        </div>
+      )}
+
       {items?.length === 0 && <NoResults />}
       <div
         ref={ref}

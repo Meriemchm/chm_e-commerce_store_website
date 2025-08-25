@@ -21,12 +21,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
   return (
     <div onClick={handleClick} className="bg-white group cursor-pointer space-y-4 p-5 md:px-0">
       {" "}
-      <div className="aspect-square rounded-xl bg-gray-100 relative">
+      <div className=" aspect-square rounded-xl bg-gray-100 relative">
         <Image
           src={data?.images?.[0]?.url}
           fill
           alt={data.name}
-          className="w-full h-80 object-scale-down mb-4 rounded-xl"
+          className="w-full h-80 object-contain object-center mb-4 rounded-xl"
         />
         <div className="opacity-0 group-hover:opacity-100 absolute top-2 right-2 transition">
           <div className="flex gap-x-6 justify-between">
