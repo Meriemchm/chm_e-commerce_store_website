@@ -1,7 +1,7 @@
 "use client";
 
 import { ShoppingBag } from "lucide-react";
-import Button from "../button";
+import Button from "../ui/button";
 import { useEffect, useState } from "react";
 
 export const NavbarActions = () => {

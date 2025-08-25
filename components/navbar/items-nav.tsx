@@ -7,9 +7,10 @@ import { usePathname } from "next/navigation";
 
 interface ItemsNavProps {
   data: Category[];
+  scrolled?: boolean;
 }
 
-export const ItemsNav: React.FC<ItemsNavProps> = ({ data }) => {
+export const ItemsNav: React.FC<ItemsNavProps> = ({ data, scrolled }) => {
   const pathname = usePathname();
 
   const routes = data.map((route) => ({
@@ -26,8 +27,9 @@ export const ItemsNav: React.FC<ItemsNavProps> = ({ data }) => {
             key={route.href}
             href={route.href}
             className={cn(
-              "text-sm font-medium transition-colors hover:text-black ",
-              route.active ? "text-black" : "text-neutral-500"
+              "capitalize text-sm font-medium transition-colors hover:opacity-50 ",
+              route.active ? "text-neutral-400" : "text-white",
+              scrolled ? "text-black" : "text-white"
             )}
           >
             {route.label}
