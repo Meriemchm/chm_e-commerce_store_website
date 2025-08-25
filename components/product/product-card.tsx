@@ -6,7 +6,9 @@ import Image from "next/image";
 import { IconButton } from "../ui/icon-button";
 import { Currency } from "../ui/currency";
 import { useRouter } from "next/navigation";
-
+import { MouseEventHandler } from "react";
+import PreviewModal from "../preview-modal";
+import usePreviewModal from "@/hooks/use-preview-modal";
 
 interface ProductCardProps {
   data: Product;
@@ -14,12 +16,22 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
   const router = useRouter();
+  const previewModal = usePreviewModal()
   const handleClick = () => {
     router.push(`/product/${data.id}`);
   };
 
+  const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation()
+
+    previewModal.onOpen(data)
+  }
+
   return (
-    <div onClick={handleClick} className="bg-white group cursor-pointer space-y-4 p-5 md:px-0">
+    <div
+      onClick={handleClick}
+      className="bg-white group cursor-pointer space-y-4 p-5 md:px-0"
+    >
       {" "}
       <div className=" aspect-square rounded-xl bg-gray-100 relative">
         <Image
@@ -31,7 +43,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
         <div className="opacity-0 group-hover:opacity-100 absolute top-2 right-2 transition">
           <div className="flex gap-x-6 justify-between">
             <IconButton
-              onClick={() => {}}
+              onClick={onPreview}
               icon={<Expand size={20} className="text-gray-600" />}
             />
             <IconButton
