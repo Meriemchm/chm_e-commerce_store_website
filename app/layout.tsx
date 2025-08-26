@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar/navbar";
 import ModalProvider from "@/providers/modal-provider";
+import { ToasterProvider } from "@/providers/toast-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ModalProvider />
+        <ToasterProvider/>
         <Navbar />
         {children}
         <Footer />
