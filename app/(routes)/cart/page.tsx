@@ -1,7 +1,7 @@
 "use client";
 
 import { CartItem } from "@/components/cart-item";
-import { Summary } from "@/components/summary";
+import Summary  from "@/components/summary";
 import { Container } from "@/components/ui/container";
 import NoResults from "@/components/ui/no-results";
 import useCart from "@/hooks/use-cart";
@@ -33,7 +33,7 @@ const CartPage = () => {
                 ))}
               </ul>
             </div>
-            <div className="">
+            <div className="lg:col-span-5">
               <Summary />
             </div>
           </div>
