@@ -19,7 +19,7 @@ export const Billboard: React.FC<BillboardProps> = ({ data }) => {
         <div className="h-full w-full flex flex-col justify-center items-start pl-2 md:pl-16">
           <div className="font-bold text-3xl md:text-6xl sm:max-w-md max-w-xs">
             <p ref={textRef} className="text-white split">
-              {data.label}
+              {data?.label}
             </p>
           </div>
         </div>

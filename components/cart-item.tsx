@@ -14,8 +14,9 @@ export const CartItem: React.FC<CartItemProps> = ({ data }) => {
   const cart = useCart();
 
   const onRemove = () => {
-    cart.removeItem(data.id)
-  }
+    cart.removeItem(data.id);
+  };
+  console.log(data.sizes,data.colors)
 
   return (
     <div>
@@ -37,13 +38,27 @@ export const CartItem: React.FC<CartItemProps> = ({ data }) => {
 
           <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
             <div className="flex justify-between">
-              <p className="text-lg font-semibold text-black capitalize">{data.name}</p>
+              <p className="text-lg font-semibold text-black capitalize">
+                {data.name}
+              </p>
             </div>
 
             <div className="mt-1 flex text-sm">
-              <p className="text-gray-500">{data.color.name} </p>
+              <p className="text-gray-500">
+                {data.colors.map((c, index) => (
+                  <span key={index}>
+                    {c.name}
+                    {index < data.colors.length - 1 ? ", " : ""}
+                  </span>
+                ))}
+              </p>
               <p className="text-gray-500 ml-4 border-l border-gray-200 pl-4">
-                {data.size.name}{" "}
+                {data.sizes.map((s, index) => (
+                  <span key={index}>
+                    {s.name}
+                    {index < data.sizes.length - 1 ? ", " : ""}
+                  </span>
+                ))}
               </p>
             </div>
             <Currency value={data.price} />
