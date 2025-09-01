@@ -22,8 +22,8 @@ export interface Product {
   price: string;
   images: Image[];
   isFeatured: boolean;
-  size: Size;
-  color: Color;
+  sizes: Size[];
+  colors: Color[];
 }
 
 export interface Image {
